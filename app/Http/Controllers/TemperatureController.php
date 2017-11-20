@@ -17,20 +17,31 @@ class TemperatureController extends Controller
 //        $input = "0"; //0
 
 
-        $inputs = explode(" ", $input);
+//        $inputs = explode(" ", $input);
 
 // Write an action using echo(). DON'T FORGET THE TRAILING \n
 // To debug (equivalent to var_dump): error_log(var_export($var, true));$sort = sort($inputs
 
-        $newInput = array();
-        foreach ($inputs as $ip) {
-            $newInput[] = abs($ip);
 
+        $exp_temp = explode(' ',$input);
+        sort($exp_temp);
+        \Log::debug($exp_temp);
+
+//        return count($exp_temp) == 3 ? array_shift($exp_temp) : abs(array_shift($exp_temp));
+        $number = 0;
+//
+        foreach ($exp_temp as $key=> $a) {
+            \Log::debug($a);
+            if ($a > $number) {
+                return count($exp_temp) == 3 ? $a : abs($a);
+            }elseif(count($exp_temp)-1 == $key){
+                return count($exp_temp) == 3 ? $a : abs($a);
+            }
         }
-        sort($newInput);
-        $temp = count($inputs) <> 3 ? array_shift($newInput): -array_shift($newInput);
 
-        echo($temp."\n");
+//        echo $input ? $this->calTemps($exp_temp, $number) : 0;
 //        return $sort;
     }
+
+
 }
