@@ -25,23 +25,23 @@ class TemperatureController extends Controller
 
         $exp_temp = explode(' ',$input);
         sort($exp_temp);
-        \Log::debug($exp_temp);
 
-//        return count($exp_temp) == 3 ? array_shift($exp_temp) : abs(array_shift($exp_temp));
         $number = 0;
-//
-        foreach ($exp_temp as $key=> $a) {
-            \Log::debug($a);
+
+        echo $input ? $this->calcTemps($exp_temp, $number) : 0;
+    }
+
+
+
+
+    function calcTemps($exp_temp, $number)
+    {
+        foreach ($exp_temp as $a) {
             if ($a > $number) {
-                return count($exp_temp) == 3 ? $a : abs($a);
-            }elseif(count($exp_temp)-1 == $key){
                 return count($exp_temp) == 3 ? $a : abs($a);
             }
         }
 
-//        echo $input ? $this->calTemps($exp_temp, $number) : 0;
-//        return $sort;
+        return empty($exp_temp) ? 0 : end($exp_temp);
     }
-
-
 }
