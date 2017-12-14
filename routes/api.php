@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('temperatures','TemperatureController@gettemperature');
+Route::get('horse','HorseController@horseRacing');
