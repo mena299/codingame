@@ -17,5 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('temperatures','TemperatureController@gettemperature');
-Route::get('horse','HorseController@horseRacing');
+Route::group(['prefix' => 'easy'], function () {
+    Route::get('temperatures', 'TemperatureController@gettemperature');
+    Route::get('horse', 'HorseController@horseRacing');
+    Route::get('defibrillators', 'DefibrillatorsController@getLocation');
+});
+
+
